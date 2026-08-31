@@ -1,0 +1,77 @@
+{
+  "titulo": "Información de Trescasas",
+  "secciones": [
+    {
+      "titulo": "Teléfonos útiles",
+      "icono": "phone",
+      "items": [
+        {
+          "nombre": "Ayuntamiento de Trescasas",
+          "telefono": "921 40 60 59",
+          "direccion": "Plaza Mayor, 1"
+        },
+        {
+          "nombre": "Emergencias",
+          "telefono": "112",
+          "nota": "Urgencias sanitarias, bomberos y policía"
+        },
+        {
+          "nombre": "Guardia Civil (emergencias)",
+          "telefono": "062"
+        },
+        {
+          "nombre": "Farmacia de Trescasas",
+          "telefono": "921 40 62 80",
+          "direccion": "C/ Las Pozas"
+        },
+        {
+          "nombre": "Biblioteca Pública de Trescasas",
+          "telefono": "921 40 74 35",
+          "direccion": "C/ Real, 4"
+        },
+        {
+          "nombre": "Balneario Navalcaz",
+          "telefono": "921 40 78 90",
+          "direccion": "Ctra. San Ildefonso s/n"
+        }
+      ]
+    },
+    {
+      "titulo": "Comidas populares · dónde comprar tickets",
+      "icono": "services",
+      "items": [
+        {
+          "nombre": "Ayuntamiento de Trescasas",
+          "telefono": "921 40 60 59",
+          "nota": "Punto de venta de tickets (7 € / bono 3x2 15 €)"
+        },
+        {
+          "nombre": "La Despensa",
+          "telefono": "921 05 17 56",
+          "nota": "Punto de venta de tickets"
+        },
+        {
+          "nombre": "Tahona de MariÁngeles",
+          "telefono": "921 40 74 58",
+          "nota": "Punto de venta de tickets"
+        }
+      ]
+    },
+    {
+      "titulo": "Bares de las fiestas",
+      "icono": "phone",
+      "items": [
+        {
+          "nombre": "Bar Los Pintos",
+          "telefono": "627 02 86 77",
+          "direccion": "C/ Segovia, 2"
+        },
+        {
+          "nombre": "Bar El Tío Honorio",
+          "telefono": "679 08 76 19",
+          "direccion": "C/ Real, 14"
+        }
+      ]
+    }
+  ]
+}
