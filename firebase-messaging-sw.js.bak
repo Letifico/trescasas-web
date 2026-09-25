@@ -1,23 +1,5 @@
 // Service worker de mensajería (push web) — Trescasas
 // Debe estar en web/firebase-messaging-sw.js y servirse desde la raíz del sitio.
-
-// Al tocar un aviso: si la app ya está abierta, la trae al frente; si no, la abre.
-// (Va ANTES de cargar Firebase para que este manejador se registre el primero.)
-self.addEventListener('notificationclick', function (event) {
-  event.notification.close();
-  const destino = (event.notification.data && event.notification.data.url) || '/';
-  event.waitUntil(
-    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function (lista) {
-      for (const c of lista) {
-        if (c.url.startsWith(self.location.origin) && 'focus' in c) {
-          return c.focus();
-        }
-      }
-      if (clients.openWindow) return clients.openWindow(destino);
-    })
-  );
-});
-
 importScripts('https://www.gstatic.com/firebasejs/11.6.1/firebase-app-compat.js');
 importScripts('https://www.gstatic.com/firebasejs/11.6.1/firebase-messaging-compat.js');
 
@@ -39,6 +21,5 @@ messaging.onBackgroundMessage(function (payload) {
     body: n.body || '',
     icon: '/icons/Icon-192.png',
     badge: '/icons/Icon-192.png',
-    data: { url: '/' },
   });
 });
