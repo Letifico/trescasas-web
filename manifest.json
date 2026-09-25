@@ -4,7 +4,7 @@
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0B5B37",
-    "theme_color": "#0B5B37",
+    "theme_color": "#0C1511",
     "description": "Programa de fiestas de Trescasas (Segovia).",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
