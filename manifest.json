@@ -3,8 +3,8 @@
     "short_name": "Trescasas",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#EADFC9",
-    "theme_color": "#EADFC9",
+    "background_color": "#2F5560",
+    "theme_color": "#2F5560",
     "description": "Programa de fiestas de Trescasas (Segovia).",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
@@ -33,4 +33,5 @@
         }
     ]
 }
+
 
