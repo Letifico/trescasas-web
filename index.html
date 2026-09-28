@@ -19,12 +19,12 @@
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="Programa, mapa y avisos en vivo de las fiestas de Trescasas (Segovia).">
+  <meta name="theme-color" content="#2F5560">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Trescasas">
-  <meta name="theme-color" content="#2F5560">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Open Graph (vista previa al compartir por WhatsApp / redes) -->
@@ -40,10 +40,62 @@
 
   <title>Trescasas</title>
   <link rel="manifest" href="manifest.json">
+
+  <!--
+    ACTUALIZACIÓN AUTOMÁTICA
+    publicar.ps1 cambia 202609281748 por la fecha de cada publicación y deja en
+    la web un version-web.json con esa misma fecha. Al abrir la app (y al volver
+    a ella) se compara: si hay una publicación más nueva, se borra la caché de la
+    app y se recarga sola. El service worker de los avisos NO se toca.
+  -->
+  <script>
+    (function () {
+      var ESTA = '202609281748';
+      if (ESTA.indexOf('__') === 0) return; // sin sellar (flutter run en local)
+      var mirando = false;
+
+      function comprobar() {
+        if (mirando) return;
+        mirando = true;
+        fetch('version-web.json?t=' + Date.now(), { cache: 'no-store' })
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (j) {
+            if (!j || !j.build || j.build === ESTA) return;
+            // Evita bucles: solo un intento por cada versión nueva.
+            var clave = 'tc-recarga-' + j.build;
+            try { if (sessionStorage.getItem(clave)) return; sessionStorage.setItem(clave, '1'); } catch (e) {}
+            var tareas = [];
+            if ('caches' in window) {
+              tareas.push(caches.keys().then(function (ks) {
+                return Promise.all(ks.map(function (k) { return caches.delete(k); }));
+              }));
+            }
+            if (navigator.serviceWorker && navigator.serviceWorker.getRegistrations) {
+              tareas.push(navigator.serviceWorker.getRegistrations().then(function (regs) {
+                return Promise.all(regs.map(function (reg) {
+                  var sw = reg.active || reg.waiting || reg.installing;
+                  var url = sw ? sw.scriptURL : '';
+                  if (url.indexOf('firebase-messaging-sw') >= 0) return null; // avisos: se queda
+                  return reg.unregister();
+                }));
+              }));
+            }
+            Promise.all(tareas).catch(function () {}).then(function () {
+              location.replace(location.pathname + '?v=' + j.build);
+            });
+          })
+          .catch(function () {})
+          .then(function () { mirando = false; });
+      }
+
+      comprobar();
+      document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'visible') comprobar();
+      });
+    })();
+  </script>
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+  <script src="flutter_bootstrap.js?v=202609281748" async></script>
 </body>
 </html>
-
-
