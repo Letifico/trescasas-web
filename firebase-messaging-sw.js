@@ -1,21 +1,22 @@
 // Service worker de mensajería (push web) — Trescasas
 // Debe estar en web/firebase-messaging-sw.js y servirse desde la raíz del sitio.
 
-// Al tocar un aviso: si la app ya está abierta, la trae al frente; si no, la abre.
-// (Va ANTES de cargar Firebase para que este manejador se registre el primero.)
-self.addEventListener('notificationclick', function (event) {
+// Al tocar un aviso: trae la app al frente si ya está abierta; si no, la abre.
+// Va ANTES de los importScripts y corta la propagación para que el manejador
+// propio de Firebase no abra una segunda ventana.
+self.addEventListener('notificationclick', (event) => {
   event.notification.close();
-  const destino = (event.notification.data && event.notification.data.url) || '/';
-  event.waitUntil(
-    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function (lista) {
-      for (const c of lista) {
-        if (c.url.startsWith(self.location.origin) && 'focus' in c) {
-          return c.focus();
-        }
-      }
-      if (clients.openWindow) return clients.openWindow(destino);
-    })
-  );
+  event.stopImmediatePropagation();
+  const destino = self.location.origin + '/';
+  event.waitUntil((async () => {
+    const ventanas = await clients.matchAll({ type: 'window', includeUncontrolled: true });
+    for (const c of ventanas) {
+      const u = new URL(c.url);
+      const esApp = u.pathname === '/' || u.pathname === '/index.html';
+      if (esApp && 'focus' in c) return c.focus();
+    }
+    if (clients.openWindow) return clients.openWindow(destino);
+  })());
 });
 
 importScripts('https://www.gstatic.com/firebasejs/11.6.1/firebase-app-compat.js');
@@ -32,13 +33,14 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
-// Notificación cuando la web está en segundo plano
-messaging.onBackgroundMessage(function (payload) {
-  const n = payload.notification || {};
-  self.registration.showNotification(n.title || 'Trescasas', {
-    body: n.body || '',
+// Solo para mensajes sin "notification" (los que sí la llevan ya los muestra
+// Firebase; si los mostráramos aquí también, saldrían repetidos).
+messaging.onBackgroundMessage((payload) => {
+  if (payload.notification) return;
+  const d = payload.data || {};
+  self.registration.showNotification(d.title || 'Trescasas', {
+    body: d.body || '',
     icon: '/icons/Icon-192.png',
     badge: '/icons/Icon-192.png',
-    data: { url: '/' },
   });
 });
