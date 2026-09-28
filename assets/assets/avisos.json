@@ -1,0 +1,64 @@
+{
+ "avisos": [
+  {
+   "id": "2026-09-29-olmos",
+   "tipo": "trafico",
+   "titulo": "Corte de tráfico en la Calle Los Olmos",
+   "texto": "La Calle Los Olmos estará cortada al tráfico por obras. Disculpen las molestias.",
+   "desde": "2026-09-29 09:00",
+   "hasta": null,
+   "hasta_texto": "Hasta la finalización de los trabajos",
+   "mostrar_hasta": "2026-10-03 23:59",
+   "calle": "Calle Los Olmos",
+   "fuente": "Difusión de noticias de Trescasas",
+   "tramos": [
+    [
+     [
+      40.961187,
+      -4.038377
+     ],
+     [
+      40.961225,
+      -4.038364
+     ],
+     [
+      40.961267,
+      -4.038335
+     ],
+     [
+      40.961315,
+      -4.038289
+     ],
+     [
+      40.961461,
+      -4.038118
+     ],
+     [
+      40.961471,
+      -4.038107
+     ],
+     [
+      40.96159,
+      -4.037945
+     ],
+     [
+      40.961699,
+      -4.037806
+     ],
+     [
+      40.961721,
+      -4.037774
+     ],
+     [
+      40.961827,
+      -4.037618
+     ],
+     [
+      40.961852,
+      -4.03758
+     ]
+    ]
+   ]
+  }
+ ]
+}
