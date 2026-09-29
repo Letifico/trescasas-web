@@ -59,6 +59,34 @@
      ]
     ]
    ]
+  },
+  {
+   "id": "2026-09-30-carlos-iii",
+   "tipo": "trafico",
+   "titulo": "Corte de tráfico en la Plaza Carlos III",
+   "texto": "Se cortará el tráfico en el lateral de la Plaza Carlos III para la realización de trabajos en la calzada. Disculpen las molestias.",
+   "desde": "2026-09-30 09:00",
+   "hasta": null,
+   "hasta_texto": "Hasta la finalización de los trabajos",
+   "mostrar_hasta": "2026-10-04 23:59",
+   "calle": "Plaza Carlos III",
+   "fuente": "Difusión de noticias de Trescasas",
+   "tramos": [
+    [
+     [
+      40.958062,
+      -4.036933
+     ],
+     [
+      40.958041,
+      -4.036848
+     ],
+     [
+      40.957881,
+      -4.036251
+     ]
+    ]
+   ]
   }
  ]
 }
