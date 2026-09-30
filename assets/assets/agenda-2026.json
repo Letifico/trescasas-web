@@ -44,6 +44,11 @@
       "id": "solidario",
       "label": "Salud y solidaridad",
       "color": "#c0392b"
+    },
+    {
+      "id": "municipal",
+      "label": "Ayuntamiento",
+      "color": "#1e7a42"
     }
   ],
   "lugares": [
@@ -74,6 +79,13 @@
       "tipo": "deporte",
       "lat": 40.955515,
       "lng": -4.036806
+    },
+    {
+      "id": "ayuntamiento",
+      "nombre": "Ayuntamiento (Salón de Plenos)",
+      "tipo": "institucional",
+      "lat": 40.958383,
+      "lng": -4.037855
     }
   ],
   "anuncios": [],
@@ -5707,6 +5719,25 @@
       "organizador": "Proyectos de Promoción Personal (Diputación de Segovia)"
     },
     {
+      "hora_aprox": false,
+      "lugar_nota": null,
+      "penas": [],
+      "entrada": false,
+      "entrada_info": null,
+      "entrada_url": null,
+      "meteo_dependiente": false,
+      "destacado": false,
+      "id": "ag-2026-10-01-05",
+      "fecha": "2026-10-01",
+      "hora": "19:30",
+      "titulo": "Pleno ordinario del Ayuntamiento",
+      "descripcion": "Sesión abierta al público. Orden del día: 1. Aprobación del acta anterior. 2. Aprobación, si procede, de la cuenta general 2025. 3. Aprobación, si procede, de la ordenanza de ocupación de la vía pública. 4. Dación de cuenta de decretos. 5. Ruegos y preguntas.",
+      "categoria": "municipal",
+      "lugar_id": "ayuntamiento",
+      "imagen": "assets/agenda/pleno-2026-10-01.jpg",
+      "organizador": "Ayuntamiento de Trescasas"
+    },
+    {
       "id": "ag-2026-10-01-04",
       "fecha": "2026-10-01",
       "hora": "20:15",
@@ -5882,6 +5913,25 @@
       "destacado": false,
       "imagen": "assets/agenda/actividades-octubre.jpg",
       "organizador": "Ayuntamiento de Trescasas"
+    },
+    {
+      "hora_aprox": false,
+      "lugar_nota": null,
+      "penas": [],
+      "entrada": false,
+      "entrada_info": null,
+      "entrada_url": null,
+      "meteo_dependiente": false,
+      "destacado": false,
+      "id": "ag-2026-10-06-01",
+      "fecha": "2026-10-06",
+      "hora": "17:30",
+      "titulo": "Curso de memoria (Aulas Sociales): comienzan las clases",
+      "descripcion": "Aulas Sociales 2026-2027: aprende, activa tu mente y comparte. Clases de 17:30 a 19:00 a partir del martes 6 de octubre.",
+      "categoria": "curso",
+      "lugar_id": "casa-cultura",
+      "imagen": "assets/agenda/aulas-sociales-memoria.jpg",
+      "organizador": "Proyectos de Promoción Personal (Diputación de Segovia) · EULEN Sociosanitarios"
     },
     {
       "id": "ag-2026-10-07-01",
