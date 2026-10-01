@@ -5757,6 +5757,47 @@
       "organizador": "Ayuntamiento de Trescasas"
     },
     {
+      "hora_aprox": false,
+      "categoria": "deporte",
+      "lugar_id": null,
+      "lugar_nota": "Pabellón La Flecha y pabellones de la provincia",
+      "penas": [],
+      "entrada": false,
+      "entrada_info": null,
+      "entrada_url": null,
+      "meteo_dependiente": false,
+      "destacado": true,
+      "imagen": "assets/agenda/atm-futbol-sala-jornada1.jpg",
+      "organizador": "C.D. ATM Trescasas",
+      "id": "ag-2026-10-02-02",
+      "fecha": "2026-10-02",
+      "hora": "17:20",
+      "titulo": "Comienza la temporada de fútbol sala del ATM Trescasas",
+      "descripcion": "Después de semanas de preparación, vuelve la competición: este fin de semana los equipos del C.D. ATM Trescasas arrancan la temporada 2026/27. Partidos de la primera jornada:\n• Femenino: ATM Trescasas – C.D. San Lorenzo Futsal · viernes 2, 17:20 · P.M. La Flecha (Trescasas)\n• Alevín: C.D. Carbonero el Mayor – ATM Trescasas · sábado 3, 12:00 · P.M. Carbonero el Mayor\n• Juvenil: ATM Trescasas – C.D. San Lorenzo B · sábado 3, 12:00 · P.M. La Flecha (Trescasas)\n• Infantil: C.D. Sierra de la Mujer Muerta – ATM Trescasas · sábado 3, 13:00 · P.M. Otero de Herreros\n• Benjamín: Sporting Riazano – ATM Trescasas · domingo 4, 11:30 · P.M. Riaza\n• Aficionado: C.D. Monteresma-La Atalaya – ATM Trescasas · domingo 4, 18:00 · P.M. Arroyo de la Vega\n¡Vamos ATM Trescasas! Juntos somos más fuertes.",
+      "imagenes": [
+        "assets/agenda/atm-cartel-2026-27.jpg"
+      ]
+    },
+    {
+      "hora_aprox": false,
+      "categoria": "deporte",
+      "lugar_id": "pabellon-la-flecha",
+      "lugar_nota": null,
+      "penas": [],
+      "entrada": false,
+      "entrada_info": null,
+      "entrada_url": null,
+      "meteo_dependiente": false,
+      "destacado": false,
+      "imagen": "assets/agenda/atm-futbol-sala-jornada1.jpg",
+      "organizador": "C.D. ATM Trescasas",
+      "id": "ag-2026-10-02-03",
+      "fecha": "2026-10-02",
+      "hora": "17:20",
+      "titulo": "Fútbol sala femenino: ATM Trescasas – C.D. San Lorenzo Futsal",
+      "descripcion": "Superliga Segoviana de Fútbol Sala, primera jornada de la temporada 2026/27. Partido en casa: ¡ven a animar!"
+    },
+    {
       "id": "ag-2026-10-02-01",
       "fecha": "2026-10-02",
       "hora": "18:30",
@@ -5774,6 +5815,25 @@
       "destacado": false,
       "imagen": "assets/agenda/actividades-octubre.jpg",
       "organizador": "Ayuntamiento de Trescasas"
+    },
+    {
+      "hora_aprox": false,
+      "categoria": "deporte",
+      "lugar_id": "pabellon-la-flecha",
+      "lugar_nota": null,
+      "penas": [],
+      "entrada": false,
+      "entrada_info": null,
+      "entrada_url": null,
+      "meteo_dependiente": false,
+      "destacado": false,
+      "imagen": "assets/agenda/atm-futbol-sala-jornada1.jpg",
+      "organizador": "C.D. ATM Trescasas",
+      "id": "ag-2026-10-03-01",
+      "fecha": "2026-10-03",
+      "hora": "12:00",
+      "titulo": "Fútbol sala juvenil: ATM Trescasas – C.D. San Lorenzo B",
+      "descripcion": "1ª División Provincial Juvenil, primera jornada de la temporada 2026/27. Partido en casa: ¡ven a animar!"
     },
     {
       "id": "ag-2026-10-04-01",
