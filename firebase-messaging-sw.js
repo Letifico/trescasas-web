@@ -12,9 +12,19 @@ self.addEventListener('notificationclick', function (event) {
   var d = event.notification.data || {};
   var fcm = d.FCM_MSG || {};
   var destino = d.url || (fcm.fcmOptions && fcm.fcmOptions.link) || '/';
-  var esActo = String(destino).indexOf('acto=') >= 0;
+  var m = /[?&]acto=([a-z0-9][a-z0-9-]{2,80})/.exec(String(destino));
+  var esActo = !!m;
+  // En algunos sistemas (iPhone/iPad sobre todo) la app instalada se abre siempre en su portada,
+  // sin hacer caso de la direccion. Por eso el acto se deja ademas apuntado: la pagina lo mira
+  // al abrirse o al volver a primer plano y salta a la ficha (ver index.html).
+  var apuntar = !esActo ? Promise.resolve() : caches.open('trescasas-pendiente').then(function (c) {
+    return c.put('/__acto_pendiente', new Response(JSON.stringify({ acto: m[1], t: Date.now() }),
+      { headers: { 'Content-Type': 'application/json' } }));
+  }).catch(function () {});
   event.waitUntil(
-    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function (lista) {
+    apuntar.then(function () {
+      return clients.matchAll({ type: 'window', includeUncontrolled: true });
+    }).then(function (lista) {
       if (!esActo) {
         for (var i = 0; i < lista.length; i++) {
           var c = lista[i];

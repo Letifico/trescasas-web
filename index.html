@@ -43,14 +43,14 @@
 
   <!--
     ACTUALIZACIÓN AUTOMÁTICA
-    publicar.ps1 cambia 202611181313 por la fecha de cada publicación y deja en
+    publicar.ps1 cambia 202611181445 por la fecha de cada publicación y deja en
     la web un version-web.json con esa misma fecha. Al abrir la app (y al volver
     a ella) se compara: si hay una publicación más nueva, se borra la caché de la
     app y se recarga sola. El service worker de los avisos NO se toca.
   -->
   <script>
     (function () {
-      var ESTA = '202611181313';
+      var ESTA = '202611181445';
       if (ESTA.indexOf('__') === 0) return; // sin sellar (flutter run en local)
       var mirando = false;
 
@@ -81,7 +81,7 @@
               }));
             }
             Promise.all(tareas).catch(function () {}).then(function () {
-              location.replace(location.pathname + '?v=' + j.build);
+              var ma = /[?&]acto=([a-z0-9][a-z0-9-]{2,80})/.exec(location.search); location.replace(location.pathname + '?v=' + j.build + (ma ? '&acto=' + ma[1] : ''));
             });
           })
           .catch(function () {})
@@ -96,6 +96,30 @@
   </script>
 </head>
 <body>
-  <script src="flutter_bootstrap.js?v=202611181313" async></script>
+  <script>
+  // Acto pendiente de abrir: lo deja apuntado firebase-messaging-sw.js cuando se toca la
+  // notificacion de un acto. Si la app no se ha abierto ya en ese acto, se va a su ficha.
+  (function () {
+    if (!('caches' in window)) return;
+    function mirar() {
+      caches.open('trescasas-pendiente').then(function (c) {
+        return c.match('/__acto_pendiente').then(function (r) {
+          if (!r) return;
+          return r.json().then(function (d) {
+            return c.delete('/__acto_pendiente').then(function () {
+              if (!d || !/^[a-z0-9][a-z0-9-]{2,80}$/.test(d.acto) || Date.now() - d.t > 120000) return;
+              if (location.search.indexOf('acto=' + d.acto) >= 0) return;
+              location.replace('/?acto=' + d.acto);
+            });
+          });
+        });
+      }).catch(function () {});
+    }
+    mirar();
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) mirar(); });
+    window.addEventListener('focus', mirar);
+  })();
+  </script>
+  <script src="flutter_bootstrap.js?v=202611181445" async></script>
 </body>
 </html>
