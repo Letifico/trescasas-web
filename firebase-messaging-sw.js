@@ -22,13 +22,12 @@ self.addEventListener('notificationclick', function (event) {
 self.addEventListener('install', function () { self.skipWaiting(); });
 self.addEventListener('activate', function (event) { event.waitUntil(self.clients.claim()); });
 
-// Aviso con la app "a la vista". Si hay una ventana de la app visible, Firebase no saca
-// notificacion: se lo pasa a la app, que lo ensena como una franja interior. Eso deja sin
-// notificacion al que bloquea el movil con la app abierta (para el navegador sigue visible).
-// Aqui se saca tambien la notificacion del sistema en ese caso. Cuando no hay ventana visible
-// no se hace nada: la notificacion la saca Firebase, como siempre.
-// Todas las notificaciones de un mismo aviso llevan la misma etiqueta (la pone el servidor),
-// asi que aunque se intente mostrar dos veces el sistema deja una sola.
+// Notificacion de cada aviso. Se saca aqui, con la etiqueta unica que pone el servidor.
+// - App cerrada o en segundo plano: Firebase tambien la saca por su cuenta, con esa misma
+//   etiqueta, y el sistema las deja en una sola.
+// - App "a la vista" (por ejemplo, movil bloqueado con la app abierta): Firebase no saca nada,
+//   solo se lo pasa a la app; la notificacion es la de aqui.
+// Si el aviso llegara sin etiqueta, solo se saca en el segundo caso, para no repetirla.
 // (Va ANTES de cargar Firebase, igual que el manejador de arriba.)
 self.addEventListener('push', function (event) {
   var datos = {};
@@ -40,12 +39,12 @@ self.addEventListener('push', function (event) {
       var hayVisible = lista.some(function (c) {
         return c.visibilityState === 'visible' && c.url.indexOf('chrome-extension://') !== 0;
       });
-      if (!hayVisible) return;
+      if (!n.tag && !hayVisible) return;
       return self.registration.showNotification(n.title || 'Trescasas', {
         body: n.body || '',
         icon: '/icons/Icon-192.png',
         badge: '/icons/Icon-192.png',
-        tag: n.tag || datos.fcmMessageId,   // misma etiqueta que use Firebase: nunca dos del mismo aviso
+        tag: n.tag || datos.fcmMessageId,
         data: { url: '/' },
       });
     })
@@ -66,14 +65,6 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
-// Notificación cuando la web está en segundo plano
-messaging.onBackgroundMessage(function (payload) {
-  const n = payload.notification || {};
-  self.registration.showNotification(n.title || 'Trescasas', {
-    body: n.body || '',
-    icon: '/icons/Icon-192.png',
-    badge: '/icons/Icon-192.png',
-    tag: n.tag || payload.messageId,   // si Firebase ya la ha sacado con esta etiqueta, se queda en una
-    data: { url: '/' },
-  });
-});
+// En segundo plano no hace falta hacer nada aqui: la notificacion ya la sacan Firebase y el
+// manejador de arriba (con la misma etiqueta). Antes se sacaba otra desde aqui y salia repetida.
+messaging.onBackgroundMessage(function () {});
