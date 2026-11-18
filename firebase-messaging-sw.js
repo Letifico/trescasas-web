@@ -1,16 +1,24 @@
 // Service worker de mensajería (push web) — Trescasas
 // Debe estar en web/firebase-messaging-sw.js y servirse desde la raíz del sitio.
 
-// Al tocar un aviso: si la app ya está abierta, la trae al frente; si no, la abre.
-// (Va ANTES de cargar Firebase para que este manejador se registre el primero.)
+// Al tocar un aviso:
+// - si el aviso es de un acto (su enlace lleva ?acto=...), se abre la app en la ficha de ese acto;
+// - si no, y la app ya esta abierta, se trae al frente; si no lo esta, se abre.
+// (Va ANTES de cargar Firebase para que este manejador se registre el primero; corta la
+// propagacion para que Firebase no abra ademas otra ventana por su cuenta.)
 self.addEventListener('notificationclick', function (event) {
   event.notification.close();
-  const destino = (event.notification.data && event.notification.data.url) || '/';
+  event.stopImmediatePropagation();
+  var d = event.notification.data || {};
+  var fcm = d.FCM_MSG || {};
+  var destino = d.url || (fcm.fcmOptions && fcm.fcmOptions.link) || '/';
+  var esActo = String(destino).indexOf('acto=') >= 0;
   event.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function (lista) {
-      for (const c of lista) {
-        if (c.url.startsWith(self.location.origin) && 'focus' in c) {
-          return c.focus();
+      if (!esActo) {
+        for (var i = 0; i < lista.length; i++) {
+          var c = lista[i];
+          if (c.url.indexOf(self.location.origin) === 0 && 'focus' in c) return c.focus();
         }
       }
       if (clients.openWindow) return clients.openWindow(destino);
@@ -45,7 +53,7 @@ self.addEventListener('push', function (event) {
         icon: '/icons/Icon-192.png',
         badge: '/icons/Icon-192.png',
         tag: n.tag || datos.fcmMessageId,
-        data: { url: '/' },
+        data: { url: (datos.fcmOptions && datos.fcmOptions.link) || '/' },
       });
     })
   );
