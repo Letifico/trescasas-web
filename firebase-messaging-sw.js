@@ -27,6 +27,8 @@ self.addEventListener('activate', function (event) { event.waitUntil(self.client
 // notificacion al que bloquea el movil con la app abierta (para el navegador sigue visible).
 // Aqui se saca tambien la notificacion del sistema en ese caso. Cuando no hay ventana visible
 // no se hace nada: la notificacion la saca Firebase, como siempre.
+// Todas las notificaciones de un mismo aviso llevan la misma etiqueta (la pone el servidor),
+// asi que aunque se intente mostrar dos veces el sistema deja una sola.
 // (Va ANTES de cargar Firebase, igual que el manejador de arriba.)
 self.addEventListener('push', function (event) {
   var datos = {};
@@ -43,6 +45,7 @@ self.addEventListener('push', function (event) {
         body: n.body || '',
         icon: '/icons/Icon-192.png',
         badge: '/icons/Icon-192.png',
+        tag: n.tag || datos.fcmMessageId,   // misma etiqueta que use Firebase: nunca dos del mismo aviso
         data: { url: '/' },
       });
     })
@@ -70,6 +73,7 @@ messaging.onBackgroundMessage(function (payload) {
     body: n.body || '',
     icon: '/icons/Icon-192.png',
     badge: '/icons/Icon-192.png',
+    tag: n.tag || payload.messageId,   // si Firebase ya la ha sacado con esta etiqueta, se queda en una
     data: { url: '/' },
   });
 });
