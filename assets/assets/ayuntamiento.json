@@ -1,0 +1,36 @@
+{
+ "noticias": [
+  {
+   "id": "n-2026-11-punto-limpio",
+   "fecha": "2026-11-23",
+   "etiqueta": "Noticia",
+   "titulo": "Seguimos mejorando el Punto Limpio de Trescasas",
+   "imagen": "assets/noticias/punto-limpio-2026-11.jpg",
+   "texto": "Damos un nuevo paso para conseguir un Punto Limpio más ordenado, práctico y funcional.\n\nYa hemos completado la primera de las actuaciones previstas: la instalación de piezas modulares de hormigón armado que permitirán crear espacios diferenciados para depositar los residuos, facilitando su correcta separación y organización.\n\nCada vez son más los vecinos y vecinas que utilizan este servicio municipal, y queremos que sus instalaciones evolucionen para responder a las necesidades de nuestro municipio.\n\nEsta intervención es solo el comienzo. Seguiremos incorporando mejoras para hacer de este espacio un lugar más accesible, cuidado y eficiente, tanto para quienes lo utilizan como para quienes trabajan en él."
+  },
+  {
+   "id": "n-2026-11-enhorabuena-atletismo",
+   "fecha": "2026-11-22",
+   "etiqueta": "Noticia",
+   "titulo": "Enhorabuena a Alejandro Domingo y Celia Hidalgo",
+   "texto": "Desde el Ayuntamiento de Trescasas felicitamos a nuestros vecinos Alejandro Domingo y Celia Hidalgo por los reconocimientos recibidos en la Gala Regional de Atletismo de Castilla y León.\n\nAlejandro fue distinguido por representar a España en categoría sub-20. Celia recibió su galardón tras una temporada en la que se proclamó campeona de España sub-18 y compitió con la selección española.\n\n¡Enhorabuena, Alejandro y Celia! Trescasas celebra con orgullo vuestros éxitos."
+  }
+ ],
+ "plenos": [
+  {
+   "id": "pleno-2026-11-03",
+   "fecha": "2026-11-03",
+   "hora": "09:00",
+   "tipo": "Ordinario",
+   "lugar": "Salón de Plenos del Ayuntamiento",
+   "publico": true,
+   "orden": [
+    "Ratificación de la urgencia de la sesión.",
+    "Sorteo de los miembros de las mesas para las elecciones generales del 29 de noviembre de 2026.",
+    "Declaración institucional del Ayuntamiento de Trescasas para exigir a la Diputación de Segovia el reasfaltado urgente y la mejora de la travesía de la carretera SG-V-6123 a su paso por el núcleo de población.",
+    "Declaración institucional del Ayuntamiento de Trescasas para la mejora de la seguridad vial mediante la construcción de una rotonda en el cruce de la carretera SG-V-6123 a su paso por el núcleo de población.",
+    "Actividad de control."
+   ]
+  }
+ ]
+}
